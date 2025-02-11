@@ -5,7 +5,7 @@
 
 
 /**
- * The main() meathod is the entry point for
+ * The main() method is the entry point for
  * any Kotlin program
  */
 fun main() {
@@ -43,17 +43,21 @@ fun main() {
 
     //-------------------------------------------------------------------------------/
 
+    /**
+     * Person height, name and favorite color. Then she says it all in one sentence
+     */
     val person = Person(1.85,"Jenny", "Green")
 
     val sayHello = person.sayHello()
     println(sayHello)
 
+    val setOwner = person.setOwner()
+    println(setOwner)
+
     //-------------------------------------------------------------------------------/
 
 
-
 }
-
 
 /**
  * Cat class tracking name and other key data
@@ -151,7 +155,14 @@ class Cat(val name: String, var legs: Int = 4) {
  * Person Class defining a persons attributes with, name, favorite colour and height
  */
     class Person(val elevation: Double, val forename: String, val favColor: String) {
+    var owner: Person? = null //? allows us to make the cat/ object null/ not an object
         fun sayHello() =
             println("Hi, I'm $forename, I'm $elevation meters tall and I like the color $favColor")
-    }
 
+    fun setOwner(newOwner: Person) {
+        owner = newOwner // Connect them from us
+        newOwner.owner = this // Connect back to us ('this')
+
+        println("$forename now owns a ${newOwner.forename}")
+    }
+}
